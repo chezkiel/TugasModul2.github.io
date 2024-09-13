@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Akuma Co</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "nav nav"
+                "section aside"
+                "footer footer";
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto 1fr auto auto;
+            min-height: 100vh;
+        }
+
+        header {
+            grid-area: header;
+            background-color: #1a1919;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            grid-area: section;
+            background-color: #ffffff;
+            padding: 20px;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .aboutus-container {
+            padding: 50px 10%;
+            display: grid;
+            gap: 50px;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aboutus-text {
+            text-align: justify;
+            line-height: 1.8rem;
+        }
+
+        .aboutus-img {
+            display: flex;
+        }
+
+        .aboutus-img img {
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 2.4em rgba(25, 0, 58, 0.1);
+        }
+
+        .visimisi-container {
+            padding: 50px 5%;
+            background: #434443;
+            color: #F5F5F5;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visimisi-wraper {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .visimisi-col {
+            align-items: center;
+            justify-content: center;
+            flex-basis: 45%;
+            color: #F5F5F5;
+            border-radius: 20px;
+        }
+
+        .visimisi-col p {
+            font-weight: 200;
+            padding-top: 10px;
+        }
+
+        aside {
+            grid-area: aside;
+            background-color: #f0f0f0;
+            padding: 20px;
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside li {
+            margin-bottom: 15px;
+        }
+
+        aside a {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        aside a:hover {
+            color: #007BFF;
+            transform: scale(1.05);
+        }
+
+        aside a:active {
+            color: #0056b3;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: #1a1919;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .our-team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        #our-search {
+            width: 60%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        #our-search:focus {
+            border-color: #333;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+
+            section,
+            aside {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 992px) {
+            section {
+                padding: 15px;
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+            }
+
+            aside {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "section"
+                    "aside"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            section,
+            aside {
+                padding: 10px;
+            }
+
+            .our-team figure {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 14px;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+
+            section,
+            aside,
+            footer {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Akuma Co</h1>
+        </header>
+
+        <section id="section-content" style="text-align: center;">
+            <div id="about-us">
+                <h2>About Us</h2>
+                <div class="aboutus-container">
+                    <div class="aboutus-text">
+                        <p>Welcome to Akuma Co! We specialize in website development, mobile app creation, and a range
+                            of
+                            other
+                            tech solutions. Our experienced team is dedicated to delivering innovative, high-quality
+                            digital
+                            solutions tailored to your business needs. Whether you’re looking for a sophisticated
+                            website, a
+                            dynamic e-commerce platform, or an intuitive mobile app, we focus on creating designs that
+                            are
+                            both
+                            visually appealing and highly functional. </p>
+                    </div>
+                    <div class="aboutus-img">
+                        <img src="img.webp" alt="">
+                    </div>
+                </div>
+
+                <div class="visimisi-container">
+                    <h1 id="vision-mission">VISION & MISSION</h1>
+                    <div class="visimisi-wraper">
+                        <div class="visimisi-col">
+                            <h3>vision</h3>
+                            <p style="text-align: justify;">Deliver exceptional website and mobile app development
+                                services that meet our clients'
+                                unique needs. Create user-friendly, high-performance digital solutions that drive
+                                business growth and enhance customer experiences.
+                            </p>
+                        </div>
+                        <div class="visimisi-col">
+                            <h3>mission</h3>
+                            <p style="text-align: justify;">Our mission is to provide impactful and sustainable
+                                technological solutions to meet the
+                                challenges of today’s rapidly evolving digital world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="our-team" class="hidden">
+                <h2 style="text-align: center;">Our Team</h2>
+                <p style="text-align: center;">This is our main team that has been struggling together for several years
+                    to build Akuma Co. We started out as friends with only 3 people, but now more than 50 people are our
+                    friends.</p>
+                <div class="our-team">
+                    <div class="card">
+                        <img src="file.png" alt="John" style="width:100%">
+                        <h1>Chezkiel</h1>
+                        <p class="title">CEO & Founder</p>
+                        <p>Sam Ratulangi University</p>
+                        <div style="margin: 24px 0;">
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </div>
+                        <p><button>Contact</button></p>
+                    </div>
+                    <div class="card">
+                        <img src="file.png" alt="John" style="width:100%">
+                        <h1>Theodore</h1>
+                        <p class="title">Co Founder</p>
+                        <p>Sam Ratulangi University</p>
+                        <div style="margin: 24px 0;">
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </div>
+                        <p><button>Contact</button></p>
+                    </div>
+                    <div class="card">
+                        <img src="file.png" alt="John" style="width:100%">
+                        <h1>Caesar</h1>
+                        <p class="title">Co Founder </p>
+                        <p>Sam Ratulangi University</p>
+                        <div style="margin: 24px 0;">
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </div>
+                        <p><button>Contact</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wedoing" class="hidden">
+                <h2 style="text-align: center;">What We Do?</h2>
+                <p style="text-align: center;">we can do several things that you want, such as creating websites,
+                    creating mobile applications,
+                    making games, 3d design, whatever you want we can grant. you can choose below for more details</p>
+                <br><br><br><br><br>
+
+                <h3 style="text-align: center;">See how we doing</h3>
+                <div class="search-container">
+                    <input type="text" id="our-search" list="our-list" placeholder="Know more...">
+                    <datalist id="our-list">
+                        <option value="Website">
+                        <option value="Mobile Apps">
+                        <option value="3D Desain">
+                    </datalist>
+                </div>
+            </div>
+        </section>
+
+        <aside>
+            <ul>
+                <li><a href="#" onclick="showSection('about-us')">About Us</a></li>
+                <li><a href="#" onclick="showSection('our-team')">Our Team</a></li>
+                <li><a href="#" onclick="showSection('wedoing')">What We Do?</a></li>
+            </ul>
+        </aside>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="article-content">Some text in the Modal..</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Akuma Co. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('about-us').classList.add('hidden');
+            document.getElementById('our-team').classList.add('hidden');
+            document.getElementById('wedoing').classList.add('hidden');
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        var modal = document.getElementById("myModal");
+
+        var articleContent = document.getElementById("article-content");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        function showArticle() {
+            var searchValue = document.getElementById("our-search").value;
+            var content;
+
+            switch (searchValue) {
+                case "Website":
+                    content = 'Website creation involves several key steps. First, planning the website’s objectives and features is crucial. Designers then craft the layout and visuals, followed by developers coding the site using HTML, CSS, and JavaScript. The site is tested to ensure compatibility across devices and browsers before it is launched. Ongoing maintenance is essential to update content and resolve any issues that arise.';
+                    break;
+                case "Mobile Apps":
+                    content = 'Development Mobile app development starts with defining the app’s goals and target audience. Designers create a user-friendly interface, while developers write code for platforms like iOS and Android. Extensive testing is conducted to ensure the app performs well on various devices. After launching the app on app stores, continuous updates and maintenance are necessary to enhance functionality and address user feedback.';
+                    break;
+                case "3D Desain":
+                    content = '3D design focuses on creating three-dimensional models for purposes such as animation, gaming, or architectural visualization. The process begins with modeling the object, followed by texturing to add surface details. Lighting is then set up to achieve the desired effect. Finally, the model is rendered to produce the final images or animations. Tools like Blender, 3ds Max, and Maya are commonly used in this field.';
+                    break;
+                default:
+                    content = "There are no articles available for this option.";
+            }
+
+            articleContent.textContent = content;
+            modal.style.display = "flex";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var searchInput = document.getElementById("our-search");
+            searchInput.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    showArticle();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
